@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -225,5 +225,11 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+
+    'AWS_S3_KEY' => env('AWS_S3_KEY'),
+    'AWS_S3_SECRET' => env('AWS_S3_SECRET'),
+    'AWS_S3_REGION' => env('AWS_S3_REGION'),
+    'AWS_S3_BUCKET' => env('AWS_S3_BUCKET'),
+
 
 ];

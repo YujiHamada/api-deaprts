@@ -11,7 +11,7 @@ class makeXml extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'xml:make';
 
     /**
      * The console command description.
@@ -37,6 +37,7 @@ class makeXml extends Command
      */
     public function handle()
     {
-        //
+        $xml = simplexml_load_file('https://blogos.com/feed/tag/%E7%99%BE%E8%B2%A8%E5%BA%97/');
+        echo "<pre>";print_r($xml);echo "</pre>";
     }
 }
