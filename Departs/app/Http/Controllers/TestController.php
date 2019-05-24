@@ -116,7 +116,7 @@ class TestController extends Controller
 
     private function apparelTab() {
         $item_array = [];
-        $item_array = array_merge($item_array, $this->wwd());
+//        $item_array = array_merge($item_array, $this->wwd());
         $item_array = array_merge($item_array, $this->senken());
         $item_array = array_merge($item_array, $this->topseller());
         $item_array = array_merge($item_array, $this->apparelWeb());
