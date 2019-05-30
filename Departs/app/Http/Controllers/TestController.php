@@ -13,15 +13,14 @@ class TestController extends Controller
 
     public function notice() {
 
-
-        $contents = file_get_contents('https://s3-ap-northeast-1.amazonaws.com/depart-rss/GoogleNews.json');
+        $contents = file_get_contents('https://s3-ap-northeast-1.amazonaws.com/depart-rss/Departs.json');
 
         $newsArray = json_decode($contents);
         $title = $newsArray[0]->title;
-        $description = $newsArray[0]->description;
+        $description = strip_tags($newsArray[0]->description);
         $url = $newsArray[0]->url;
-        
-        $serviceAccount = ServiceAccount::fromJsonFile('/var/www/Departs/app/Http/Controllers/depart-ios-firebase.json');
+
+        $serviceAccount = ServiceAccount::fromJsonFile(app_path('Http/Controllers/') . 'depart-ios-firebase.json');
         $firebase = (new Factory)
             ->withServiceAccount($serviceAccount)
             ->create();
@@ -463,7 +462,7 @@ class TestController extends Controller
             }
             $item_array[] = $article;
         }
-        
+
         return $item_array;
     }
 
