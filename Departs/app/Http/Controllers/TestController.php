@@ -7,11 +7,17 @@ use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification;
+use Illuminate\Support\Facades\Input;
 
 class TestController extends Controller
 {
 
     public function notice() {
+
+        $topic = Input::get('topic');
+        if (empty($topic)) {
+            $topic = 'all';
+        }
 
         $contents = file_get_contents('https://s3-ap-northeast-1.amazonaws.com/depart-rss/Departs.json');
 
@@ -31,7 +37,6 @@ class TestController extends Controller
             ->withTitle($title)
             ->withBody($description);
 
-        $topic = 'all';
         $message = CloudMessage::withTarget('topic', $topic)
             ->withNotification($notification)
             ->withData(['url' => $url]);
